@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'login_page.dart';
 
 void main() {
   runApp(const BarangayConnectApp());
@@ -23,7 +24,7 @@ class BarangayConnectApp extends StatelessWidget {
         fontFamily: 'Inter',
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const LoginPage(),
     );
   }
 }
@@ -110,8 +111,8 @@ class _HomePageState extends State<HomePage> {
             radius: 20,
             backgroundColor: const Color(0xFFDCE1FF),
             child: ClipOval(
-              child: Image.network(
-                'https://lh3.googleusercontent.com/aida-public/AB6AXuB1YXm9Ylz2jn_pE95BUUaOKBlodEzPAWiZSyYpxW8XqiohRAz4Uw2ZitrH5FUBNgVQq5jg7oA7AiVQFY50Y52PR3T80nZl8bf2o7exumNMFBbEzd89yZh3AN-9IVnzYosGGgAUdUilznDWRVw7guOmdbSPfODKNZo3uv9OxKtPtZ6xsvIs6gNUm-hRU_g_zXoau6LNmFr664JJHtG5FZhcAbS6xHg2sLZ-4McJ_LjPjAzEIGXLPCA-',
+              child: Image.asset(
+                'assets/images/APOKON.png',
                 fit: BoxFit.cover,
                 width: 36,
                 height: 36,
@@ -136,7 +137,34 @@ class _HomePageState extends State<HomePage> {
       ),
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: const Text('Logout'),
+                content: const Text('Are you sure you want to log out?'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('Cancel'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => const LoginPage()),
+                        (route) => false,
+                      );
+                    },
+                    child: const Text(
+                      'Logout',
+                      style: TextStyle(color: Color(0xFFBA1A1A)),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
           icon: const Icon(
             Icons.account_circle_outlined,
             color: Color(0xFF002576),
