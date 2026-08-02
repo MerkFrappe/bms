@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 import 'signup_page.dart';
 import 'mock_database.dart';
+import 'admin_login_page.dart';
+import 'signup_page.dart';
+import 'mock_database.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -55,8 +58,10 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FF),
-      body: Center(
-        child: SingleChildScrollView(
+      body: Stack(
+        children: [
+          Center(
+            child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
           child: Container(
                 width: 400,
@@ -77,13 +82,25 @@ class _LoginPageState extends State<LoginPage> {
                     // Top White Section for Logo
                     Container(
                       color: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 40),
-                      child: Center(
-                        child: Image.asset(
-                          'assets/images/APOKON.png',
-                          height: 120,
-                          fit: BoxFit.contain,
-                        ),
+                      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 16),
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            'assets/images/APOKON.png',
+                            height: 120,
+                            fit: BoxFit.contain,
+                          ),
+                          const SizedBox(height: 16),
+                          const Text(
+                            'Brg Apokon Management System',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     
@@ -223,6 +240,33 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
+          Positioned(
+            top: 24,
+            right: 24,
+            child: TextButton.icon(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AdminLoginPage()),
+                );
+              },
+              icon: const Icon(Icons.admin_panel_settings, color: Color(0xFF15548F)),
+              label: const Text(
+                'Admin Login',
+                style: TextStyle(color: Color(0xFF15548F), fontWeight: FontWeight.bold),
+              ),
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                elevation: 2,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

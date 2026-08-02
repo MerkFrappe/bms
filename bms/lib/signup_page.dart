@@ -89,13 +89,25 @@ class _SignupPageState extends State<SignupPage> {
                     // Top White Section for Logo
                     Container(
                       color: Colors.white,
-                      padding: const EdgeInsets.only(top: 24, bottom: 24),
-                      child: Center(
-                        child: Image.asset(
-                          'assets/images/APOKON.png',
-                          height: 100,
-                          fit: BoxFit.contain,
-                        ),
+                      padding: const EdgeInsets.only(top: 24, bottom: 24, left: 16, right: 16),
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            'assets/images/APOKON.png',
+                            height: 100,
+                            fit: BoxFit.contain,
+                          ),
+                          const SizedBox(height: 16),
+                          const Text(
+                            'Brg Apokon Management System',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     
